@@ -13,20 +13,29 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/about', (req, res) => {
-
-  res.render('about')
+app.get('/:page?', (req, res) => {
+  const page = [about, portfolio, contact]
+  if(page.include(req.params.page)) {
+    res.render(req.params.page)
+  }else {
+    res.render('index')
+  }
 })
 
-app.get('/portfolio', (req, res) => {
+// app.get('/about', (req, res) => {
 
-  res.render('Portfolio')
-})
+//   res.render('about')
+// })
 
-app.get('/contact', (req, res) => {
+// app.get('/portfolio', (req, res) => {
 
-  res.render('Contact')
-})
+//   res.render('Portfolio')
+// })
+
+// app.get('/contact', (req, res) => {
+
+//   res.render('Contact')
+// })
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
